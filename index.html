@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0759bd">
+  <link rel="icon" type="image/png" href="/assets/upgradehub-icon.png">
+  <meta name="description" content="UpgradeHub secure team operations and project management workspace.">
+  <title>UpgradeHub — Team Workspace</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="loginView" class="login-wrap">
+    <div class="login-orbit orbit-one"></div><div class="login-orbit orbit-two"></div>
+    <div class="login-layout">
+      <div class="login-brand-story">
+        <div class="brand brand-light"><div class="brand-mark small"><img src="/assets/upgradehub-team-emblem.png" alt="" loading="eager"></div><div><strong>UpgradeHub</strong><small>TEAM OPERATING SYSTEM</small></div></div>
+        <div class="login-full-logo"><img src="/assets/upgradehub-team-logo.png" alt="UpgradeHub Team — Together, Plan, Build, Grow"></div>
+        <div class="login-story-copy"><span class="eyebrow eyebrow-light">BUILD WITH CLARITY</span><h2>One team.<br><span>One direction.</span></h2><p>Projects, people, decisions and accountability — connected in a workspace built to help your team do its best work.</p></div>
+        <div class="story-foot"><span class="story-signal"></span> Permission-aware workspace <span class="story-separator">·</span> Auditable actions</div>
+      </div>
+      <div class="login-card">
+        <div class="login-card-heading"><div class="brand-mark login-mark"><img src="/assets/upgradehub-team-emblem.png" alt="" loading="eager"></div><div><p class="eyebrow">SECURE SIGN IN</p><h1>Welcome back</h1></div></div>
+        <p class="muted login-intro">Sign in with your authorised work account to continue.</p>
+        <form id="loginForm" class="login-form">
+          <label>Work email<input id="email" type="email" autocomplete="username" required placeholder="you@company.com"></label>
+          <label>Password<input id="password" type="password" autocomplete="current-password" required minlength="1" placeholder="Enter your password"></label>
+          <button class="primary wide login-submit" type="submit"><span>Sign in to workspace</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p id="loginError" class="error" role="alert"></p>
+        </form>
+        <div class="login-security"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 19 6v5c0 4.5-2.8 7.8-7 10-4.2-2.2-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg><p><strong>Private workspace</strong><span>Sign-in activity may be logged. Never share your password or OTP.</span></p></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark small"><img src="/assets/upgradehub-team-emblem.png" alt="" loading="eager"></div>
+        <div class="brand-name"><strong>UpgradeHub</strong><small>TEAM WORKSPACE</small></div>
+        <span class="brand-version">v4.0</span>
+      </div>
+      <div class="workspace-switcher"><div class="workspace-tile"><img src="/assets/upgradehub-team-emblem.png" alt=""></div><div class="workspace-copy"><strong>UpgradeHub HQ</strong><small>Company workspace</small></div><span class="chevron">⌄</span></div>
+      <div class="profile-mini"><div class="avatar-wrap"><div class="avatar" id="avatar">U</div><span class="avatar-online"></span></div><div class="profile-copy"><strong id="userName">Team member</strong><small id="userRole">Employee</small></div><span class="profile-menu-dot">•••</span></div>
+      <nav id="nav" class="sidebar-nav" aria-label="Primary navigation">
+        <p class="nav-caption">WORKSPACE</p>
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="4" rx="1.5"/><rect x="13.5" y="10.5" width="7" height="10" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/></svg></span><span>Overview</span><span class="nav-current"></span></button>
+        <button class="nav-item" data-module-nav="projects"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 4v5"/></svg></span><span>Projects</span></button>
+        <button class="nav-item" data-module-nav="tasks"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8 12 2.5 2.5L16.5 9"/></svg></span><span>My tasks</span><span id="taskNavBadge" class="nav-badge hidden">0</span></button>
+        <button class="nav-item" data-scroll-target="moduleLibraryPanel" id="modulesNav"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span>All modules</span></button>
+        <p class="nav-caption nav-caption-spaced">PEOPLE</p>
+        <button class="nav-item" data-page="members" id="membersNav"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.8 20v-1.3A4.7 4.7 0 0 1 7.5 14h3a4.7 4.7 0 0 1 4.7 4.7V20M16 4.8a3.4 3.4 0 0 1 0 6.5M18 14.5a4.6 4.6 0 0 1 3.2 4.4V20"/></svg></span><span>Team directory</span></button>
+        <button class="nav-item" data-module-nav="leave"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M8 17h6"/></svg></span><span>Leave & schedule</span></button>
+        <p class="nav-caption nav-caption-spaced">GOVERNANCE</p>
+        <button class="nav-item" data-page="approvals" id="approvalsNav"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg></span><span>Approvals</span></button>
+        <button class="nav-item" data-page="audit" id="auditNav"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="8" cy="5" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="11" cy="19" r="1"/></svg></span><span>Audit & security</span></button>
+        <button class="nav-item" data-page="operations" id="operationsNav"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.1 1.8-2 3.4-2.1-.6a7.8 7.8 0 0 1-1.5.9l-.5 2.2h-4l-.5-2.2a7.8 7.8 0 0 1-1.5-.9l-2.1.6-2-3.4 1.1-1.8A7 7 0 0 1 5.5 12L5 10l2-3.4 2.1.6a7.8 7.8 0 0 1 1.5-.9l.5-2.2h4l.5 2.2a7.8 7.8 0 0 1 1.5.9l2.1-.6 2 3.4-1.1 1.8.1.2a7 7 0 0 1-.8 3z" transform="translate(0 -1) scale(.92)"/></svg></span><span>System operations</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-help"><div class="help-orb">?</div><div><strong>Need a hand?</strong><small>Visit the team knowledge base</small></div><button data-module-nav="knowledge" aria-label="Open knowledge base">↗</button></div>
+      <div class="sidebar-bottom"><div class="session-state"><span class="session-dot"></span><div><strong>Protected session</strong><small>Access is permission-aware</small></div></div><button id="logoutBtn" class="nav-item logout"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"/></svg></span><span>Sign out</span></button></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-heading"><p class="eyebrow" id="sectionEyebrow">YOUR WORKSPACE</p><h1 id="pageTitle">Overview</h1></div>
+        <div class="top-actions">
+          <span class="date-chip" id="todayDate">Today</span>
+          <button id="changePasswordBtn" class="icon-action" aria-label="Change password" title="Change password"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3"/></svg></button>
+          <button id="refreshBtn" class="icon-action" aria-label="Refresh current page" title="Refresh"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.6 9a7 7 0 0 1 11.7-2L20 12M4 12l2.7 5a7 7 0 0 0 11.7-2"/></svg></button>
+          <button id="notificationBtn" class="icon-action notification-action" aria-label="Open notifications" title="Notifications"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span id="unreadCount" class="notification-count">0</span></button>
+          <div class="top-avatar" id="topAvatar">U</div>
+        </div>
+      </header>
+      <div id="alertBox" class="alert hidden" role="status"></div>
+
+      <section id="dashboardPage" class="page dashboard-page">
+        <div class="welcome-hero">
+          <div class="hero-copy"><span class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> YOUR COMPANY, IN SYNC</span><h2 id="welcomeTitle">Welcome back</h2><p>Here’s what’s happening across your workspace. Let’s make meaningful progress today.</p><div class="hero-actions"><button id="heroTasksBtn" class="hero-primary">View my tasks <span>↗</span></button><button id="heroProjectsBtn" class="hero-secondary">Explore projects</button></div></div>
+          <div class="hero-art" aria-hidden="true"><div class="hero-ring ring-a"></div><div class="hero-ring ring-b"></div><div class="hero-glass"><span class="glass-kicker">TEAM MOMENTUM</span><div class="momentum-number" id="momentumNumber">—</div><div class="momentum-caption">Tasks completed</div><div class="momentum-track"><span id="momentumTrackFill"></span></div><div class="momentum-foot"><span>Based on visible task records</span><span id="momentumRatio">—</span></div></div><div class="hero-spark spark-a">✳</div><div class="hero-spark spark-b">✦</div></div>
+          <div class="hero-bottom-line"><span>✧</span> Small consistent wins build exceptional teams.</div>
+        </div>
+
+        <div id="statGrid" class="stat-grid" aria-label="Workspace statistics"></div>
+
+        <div class="dashboard-grid dashboard-grid-top">
+          <section class="panel work-pulse-panel">
+            <div class="panel-heading"><div><span class="section-kicker">DELIVERY</span><h2>Work pulse</h2><p class="muted">A live snapshot of your visible tasks.</p></div><button class="text-action" id="pulseTasksBtn">Open tasks <span>↗</span></button></div>
+            <div id="taskStatusBars" class="task-status-bars"><div class="empty-compact">Loading task distribution…</div></div>
+            <div class="pulse-footer" id="taskSnapshotFooter"><span class="pulse-status-dot"></span><span>Loading workspace activity</span></div>
+          </section>
+          <section class="panel project-focus-panel">
+            <div class="panel-heading"><div><span class="section-kicker">IN MOTION</span><h2>Project focus</h2><p class="muted">Recently updated project records.</p></div><button class="icon-action small-action" id="allProjectsBtn" aria-label="Open projects" title="Open projects">↗</button></div>
+            <div id="projectSnapshot" class="project-snapshot"><div class="empty-compact">Loading project records…</div></div>
+          </section>
+        </div>
+
+        <div class="dashboard-grid dashboard-grid-bottom">
+          <section class="panel priority-panel">
+            <div class="panel-heading"><div><span class="section-kicker">UP NEXT</span><h2>Task focus</h2><p class="muted">Tasks with the nearest due dates.</p></div><span class="panel-icon-bubble"><svg viewBox="0 0 24 24"><path d="M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg></span></div>
+            <div id="priorityTasks" class="priority-task-list"><div class="empty-compact">Loading tasks…</div></div>
+          </section>
+          <section class="panel quick-actions-panel">
+            <div class="panel-heading"><div><span class="section-kicker">SHORTCUTS</span><h2>Quick access</h2><p class="muted">Jump straight into the work.</p></div></div>
+            <div class="quick-action-grid">
+              <button class="quick-action" id="quickProjectsBtn"><span class="quick-icon quick-icon-purple"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 4v5"/></svg></span><span><strong>Projects</strong><small>Milestones & progress</small></span><b>↗</b></button>
+              <button class="quick-action" id="quickTasksBtn"><span class="quick-icon quick-icon-green"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8 12 2.5 2.5L16.5 9"/></svg></span><span><strong>Task board</strong><small>Assignments & deadlines</small></span><b>↗</b></button>
+              <button class="quick-action" id="quickMembersBtn"><span class="quick-icon quick-icon-orange"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.8 20v-1.3A4.7 4.7 0 0 1 7.5 14h3a4.7 4.7 0 0 1 4.7 4.7V20M16 5a3.4 3.4 0 0 1 0 6"/></svg></span><span><strong>Team directory</strong><small>People & ownership</small></span><b>↗</b></button>
+              <button class="quick-action" id="quickApprovalsBtn"><span class="quick-icon quick-icon-blue"><svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/><circle cx="12" cy="12" r="9"/></svg></span><span><strong>Approvals</strong><small>Requests awaiting review</small></span><b>↗</b></button>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel tracker-hub-panel" id="trackerHubPanel">
+          <div class="panel-heading module-heading"><div><span class="section-kicker">ADVANCED TRACKING</span><h2>Control & tracker hub</h2><p class="muted">Move from high-level visibility into the actual workflow, with access controlled by your role.</p></div><span class="tracker-live-badge"><span></span> WORKSPACE VIEW</span></div>
+          <div class="tracker-hub-grid">
+            <button class="tracker-hub-card tracker-blue" data-tracker-module="tasks"><span class="tracker-card-icon">✓</span><span class="tracker-card-text"><strong>Work tracker</strong><small>Assignments, blockers, submissions and deadlines</small></span><span class="tracker-arrow">↗</span><span class="tracker-card-foot"><b id="trackerOpenTasks">—</b> open tasks <span id="trackerOverdueTasks">— overdue</span></span></button>
+            <button class="tracker-hub-card tracker-cyan" data-tracker-module="projects"><span class="tracker-card-icon">▤</span><span class="tracker-card-text"><strong>Project tracker</strong><small>Milestones, ownership, dependencies and delivery</small></span><span class="tracker-arrow">↗</span><span class="tracker-card-foot"><b id="trackerProjectCount">—</b> visible projects <span>tracked</span></span></button>
+            <button class="tracker-hub-card tracker-purple" data-tracker-module="kpis"><span class="tracker-card-icon">↗</span><span class="tracker-card-text"><strong>Goals & KPI tracker</strong><small>Targets, actuals, review periods and context</small></span><span class="tracker-arrow">↗</span><span class="tracker-card-foot"><b>PERIOD</b> specific <span>measurements</span></span></button>
+            <button class="tracker-hub-card tracker-dark" data-tracker-module="permissions_access"><span class="tracker-card-icon">⌁</span><span class="tracker-card-text"><strong>Security tracker</strong><small>Access reviews, incidents and accountable actions</small></span><span class="tracker-arrow">↗</span><span class="tracker-card-foot"><b>RBAC</b> role-based <span>visibility</span></span></button>
+          </div>
+        </section>
+
+        <section class="panel module-library-panel" id="moduleLibraryPanel">
+          <div class="panel-heading module-heading"><div><span class="section-kicker">YOUR TOOLKIT</span><h2>Explore modules</h2><p class="muted">Role-based workspaces. Only modules your account can access are shown.</p></div><span id="moduleCount" class="module-count-badge">0 modules</span></div>
+          <div class="module-controls"><label class="module-search-label"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="moduleSearch" type="search" placeholder="Find a module…" aria-label="Search modules"></label><div id="moduleCategoryFilters" class="module-category-filters" aria-label="Filter modules by category"></div></div>
+          <div id="moduleGrid" class="module-grid"></div>
+        </section>
+
+        <section class="panel activity-panel">
+          <div class="panel-heading"><div><span class="section-kicker">AUDIT TRAIL</span><h2>Recent activity</h2><p class="muted">Recent actions recorded for your account.</p></div><button class="text-action" id="activityAuditBtn">View security log <span>↗</span></button></div>
+          <div id="recentActivity" class="table-wrap activity-table-wrap"></div>
+        </section>
+      </section>
+
+      <section id="recordsPage" class="page hidden">
+        <div class="page-intro-row"><div><span class="section-kicker" id="recordSectionLabel">WORKSPACE</span><h2 id="recordsHeading">Records</h2><p class="muted" id="recordsDescription"></p></div><button id="newRecordBtn" class="primary add-record-btn"><span>＋</span> New record</button></div>
+        <div class="records-toolbar"><label class="record-search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="recordSearch" type="search" placeholder="Search records…" aria-label="Search records"></label><label class="filter-select-label"><span>Status</span><select id="recordStatusFilter"><option value="all">All statuses</option><option value="open">Open</option><option value="in_progress">In progress</option><option value="blocked">Blocked</option><option value="awaiting_review">Awaiting review</option><option value="done">Done</option><option value="closed">Closed</option></select></label><span id="recordResultCount" class="record-result-count"></span></div>
+        <div id="recordsList" class="record-list"></div>
+      </section>
+
+      <section id="membersPage" class="page hidden">
+        <div class="page-intro-row"><div><span class="section-kicker">PEOPLE & ACCESS</span><h2>Team directory</h2><p class="muted">A clear view of team membership, role and access status. Member history is protected from hard deletion.</p></div><button id="newMemberBtn" class="primary add-record-btn"><span>＋</span> Add member</button></div>
+        <div class="member-summary-strip"><div><span class="member-summary-icon">♙</span><div><strong id="memberVisibleCount">—</strong><small>Visible team members</small></div></div><div class="member-summary-divider"></div><div><span class="summary-dot summary-dot-green"></span><div><strong id="memberActiveCount">—</strong><small>Active accounts</small></div></div><div class="member-summary-divider"></div><div><span class="summary-dot summary-dot-amber"></span><div><strong id="memberPendingCount">—</strong><small>Awaiting activation</small></div></div></div>
+        <div class="panel member-directory-panel"><div class="members-toolbar"><label class="record-search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="memberSearch" type="search" placeholder="Search name, email or department…" aria-label="Search team members"></label><label class="filter-select-label"><span>Account</span><select id="memberStatusFilter"><option value="all">All accounts</option><option value="active">Active</option><option value="pending">Pending</option><option value="suspended">Suspended</option><option value="exited">Exited</option></select></label></div><div id="membersList" class="table-wrap"></div></div>
+      </section>
+
+      <section id="approvalsPage" class="page hidden"><div class="page-intro-row"><div><span class="section-kicker">GOVERNANCE</span><h2>Approval centre</h2><p class="muted">Self-approval is blocked. High-risk request types require two different approvers. Approval does not silently perform the underlying action.</p></div><button id="newApprovalBtn" class="primary add-record-btn"><span>＋</span> Request approval</button></div><div class="governance-banner"><span class="governance-banner-icon">✓</span><div><strong>Keep critical decisions accountable</strong><p>Leave a decision note on every approval. Restricted actions remain auditable even when rejected.</p></div></div><div id="approvalsList" class="record-list"></div></section>
+
+      <section id="auditPage" class="page hidden"><div class="page-intro-row"><div><span class="section-kicker">TRUST & SAFETY</span><h2>Audit & security</h2><p class="muted">Restricted security records. Sensitive values, passwords and session secrets are not displayed.</p></div></div><div class="governance-banner security-banner"><span class="governance-banner-icon">⌁</span><div><strong>Traceable by design</strong><p>Review actor, action, target, outcome and timestamp. Use this view for investigation, not employee surveillance.</p></div></div><div id="auditList" class="table-wrap"></div></section>
+
+      <section id="operationsPage" class="page hidden"><div class="page-intro-row operations-intro"><div><span class="section-kicker">PLATFORM CONTROL</span><h2>System operations</h2><p class="muted">Recovery utilities, reminders and operational evidence for authorised administrators.</p></div><div class="row-actions"><button id="runJobsBtn" class="secondary">Run reminder checks</button><button id="createBackupBtn" class="primary">Create encrypted backup</button></div></div><div id="operationsSummary" class="stat-grid"></div><section class="panel"><div class="panel-heading"><div><span class="section-kicker">RECOVERY</span><h2>Encrypted backups</h2><p class="muted">Founder/Super Admin only. Downloads require an audited reason. Keep keys separate and perform restore drills.</p></div><button id="refreshBackupsBtn" class="secondary">Refresh</button></div><div id="backupList" class="table-wrap"></div></section><section class="panel"><div class="panel-heading"><div><span class="section-kicker">AUTOMATION</span><h2>Recent job runs</h2><p class="muted">Local execution history; this is not proof of remote backup success.</p></div></div><div id="operationsJobs" class="table-wrap"></div></section></section>
+
+      <section id="notificationsPage" class="page hidden"><div class="page-intro-row"><div><span class="section-kicker">INBOX</span><h2>Notifications</h2><p class="muted">Alerts routed to your account.</p></div></div><div id="notificationsList" class="record-list"></div></section>
+      <footer class="app-footer"><span>UpgradeHub <b>Team Workspace</b></span><span>v4.0 · Local development build · Review release readiness before production</span></footer>
+    </main>
+  </div>
+
+  <dialog id="recordDialog" class="app-dialog"><form id="recordForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">MODULE RECORD</p><h2 id="dialogTitle">Create record</h2></div><button type="button" class="icon-button" data-close="recordDialog" aria-label="Close dialog">×</button></div><label>Title<input id="recordTitle" maxlength="180" required></label><div class="form-row"><label>Status<select id="recordStatus"><option>open</option><option>in_progress</option><option>blocked</option><option>awaiting_review</option><option>at_risk</option><option>approved</option><option>done</option><option>resolved</option><option>closed</option></select></label><label>Due date<input id="recordDue" type="date"></label></div><div class="form-row"><label>Project ID (optional)<input id="recordProject" maxlength="100"></label><label>Owner / assignee user ID<input id="recordOwner" maxlength="100" placeholder="Defaults to your account"></label></div><label>Details / summary<textarea id="recordDetails" rows="3" placeholder="Context, blockers, evidence reference"></textarea></label><div id="specialFields" class="special-fields"></div><label>Change reason (required for confidential/restricted edits)<input id="recordReason" maxlength="500" placeholder="Reason for change"></label><p id="recordError" class="error"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="recordDialog">Cancel</button><button type="submit" class="primary">Save record</button></div></form></dialog>
+
+  <dialog id="memberDialog" class="app-dialog"><form id="memberForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">MEMBER ONBOARDING</p><h2>Add team member</h2></div><button type="button" class="icon-button" data-close="memberDialog" aria-label="Close dialog">×</button></div><label>Full name<input id="memberName" required maxlength="120"></label><label>Work email<input id="memberEmail" type="email" required></label><div class="form-row"><label>Designation<input id="memberDesignation"></label><label>Department<input id="memberDepartment"></label></div><div class="form-row"><label>Work contact<input id="memberContact"></label><label>Assigned project record ID (if applicable)<input id="memberAssignedProject"></label></div><div class="form-row"><label>Role<select id="memberRole"><option value="employee">Employee</option><option value="project_lead">Project Lead</option><option value="hr">HR / Member Admin</option><option value="admin">Admin</option><option value="security_reviewer">Security Reviewer</option></select></label></div><label>Temporary password (16+ characters)<input id="memberPassword" type="password" minlength="16" required autocomplete="new-password"></label><p class="tiny">New members are created as pending. Share temporary credentials only through an approved secure channel. Forced password change on first login is not yet enforced by this prototype.</p><p id="memberError" class="error"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="memberDialog">Cancel</button><button type="submit" class="primary">Create pending member</button></div></form></dialog>
+
+  <dialog id="recordActivityDialog" class="app-dialog"><form id="recordActivityForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow" id="activityEyebrow">RECORD ACTIVITY</p><h2 id="activityTitle">Record activity</h2></div><button type="button" class="icon-button" data-close="recordActivityDialog" aria-label="Close dialog">×</button></div><div id="activityContent" class="activity-content"></div><label id="commentLabel">Add comment<textarea id="commentText" rows="3" maxlength="4000" placeholder="Add a useful update, blocker or decision"></textarea></label><p id="activityError" class="error"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="recordActivityDialog">Close</button><button type="submit" id="postCommentBtn" class="primary">Post comment</button></div></form></dialog>
+
+  <dialog id="passwordDialog" class="app-dialog"><form id="passwordForm" method="dialog"><div class="dialog-head"><div><p class="eyebrow">ACCOUNT SECURITY</p><h2>Change password</h2></div><button type="button" class="icon-button" data-close="passwordDialog" aria-label="Close dialog">×</button></div><label>Current password<input id="currentPassword" type="password" required autocomplete="current-password"></label><label>New password (16+ characters)<input id="newPassword" type="password" required minlength="16" autocomplete="new-password"></label><label>Confirm new password<input id="confirmPassword" type="password" required minlength="16" autocomplete="new-password"></label><p id="passwordError" class="error"></p><div class="dialog-actions"><button type="button" class="secondary" data-close="passwordDialog">Cancel</button><button type="submit" class="primary">Update password</button></div></form></dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
